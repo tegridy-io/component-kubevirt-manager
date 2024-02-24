@@ -1,0 +1,4 @@
+parameters:
+  kubevirt_manager:
+    =_metadata: {}
+    namespace: syn-kubevirt-manager
