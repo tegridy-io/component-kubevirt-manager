@@ -1,3 +1,9 @@
-# Overwrite parameters here
+parameters:
+  kubevirt_manager:
+    ingress:
+      enabled: true
 
-# parameters: {...}
+    oidc:
+      enabled: true
+      env:
+        client_id: my-oic-client-id
