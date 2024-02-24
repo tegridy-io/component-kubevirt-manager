@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: kubevirt-manager
+    kubevirt-manager.io/version: 1.3.2
+    name: kubevirt-manager
+  name: kubevirt-manager
+  namespace: syn-kubevirt-manager
+spec:
+  rules:
+    - host: kubevirt.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: kubevirt-manager
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - kubevirt.local
+      secretName: kubevirt-manager-tls

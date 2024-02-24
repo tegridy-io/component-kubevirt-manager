@@ -2,18 +2,95 @@
 
 The parent key for all of the following parameters is `kubevirt_manager`.
 
+
 == `namespace`
 
 [horizontal]
-type:: string
-default:: `syn-kubevirt-manager`
+type:: dictionary
+default::
++
+[source,yaml]
+----
+namespace:
+  annotations: {}
+  labels: {}
+  name: syn-kubevirt-manager
+----
 
 The namespace in which to deploy this component.
+
+
+== `resources`
+
+[horizontal]
+type:: dictionary
+default::
++
+[source,yaml]
+----
+resources:
+  kubevirt_manager: {}
+  oidc_proxy: {}
+----
+
+Configure resource requests and limits.
+
+
+== `ingress`
+
+[horizontal]
+type:: dictionary
+default::
++
+[source,yaml]
+----
+ingress:
+  enabled: true <1>
+  tls: true <2>
+  url: nextcloud.local <3>
+  annotations: {} <4>
+----
+<1> Enable ingress.
+<2> Enable TLS.
+<3> Ingress URL
+<4> Ingress annotations.
+
+Configure KubeVirt Manager ingress.
+
+
+== `oidc`
+
+[horizontal]
+type:: dictionary
+default::
++
+[source,yaml]
+----
+oidc:
+  enabled: false <1>
+  env: <2>
+   client_id: ''
+   client_secret: '?{vaultkv:${cluster:tenant}/${cluster:name}/kubevirt-manager/clientSecret}'
+   cookie_secret: '?{vaultkv:${cluster:tenant}/${cluster:name}/kubevirt-manager/cookieSecret}'
+   oidc_issuer_url: ''
+   provider: oidc
+   provider_display_name: OIDC
+----
+<1> Enable OIDC.
+<2> Configure Oauth2 proxy.
+
+See https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview[Oaut2 Proxy Documentation].
 
 
 == Example
 
 [source,yaml]
 ----
-namespace: example-namespace
+ingress:
+  enabled: true
+
+oidc:
+  enabled: true
+  env:
+    client_id: my-oic-client-id
 ----

@@ -1,5 +1,9 @@
 parameters:
   kapitan:
+    dependencies:
+      - type: https
+        source: https://raw.githubusercontent.com/kubevirt-manager/kubevirt-manager/main/kubernetes/bundled.yaml
+        output_path: ${_base_directory}/manifests/dashboard-main/bundled.yaml
     compile:
       - input_paths:
           - ${_base_directory}/component/app.jsonnet
