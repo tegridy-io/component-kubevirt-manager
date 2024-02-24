@@ -7,7 +7,7 @@
       "name": "KubeVirt Manager",
       "slug": "kubevirt-manager",
       "parameter_key": "kubevirt_manager",
-      "test_cases": "defaults",
+      "test_cases": "defaults oidc",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",
