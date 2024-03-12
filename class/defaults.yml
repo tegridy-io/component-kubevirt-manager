@@ -11,7 +11,7 @@ parameters:
       kubevirt_manager:
         registry: docker.io
         repository: kubevirtmanager/kubevirt-manager
-        tag: 1.3.2
+        tag: 1.3.3
       oidc_proxy:
         registry: quay.io
         repository: oauth2-proxy/oauth2-proxy
