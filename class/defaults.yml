@@ -15,7 +15,7 @@ parameters:
       oidc_proxy:
         registry: quay.io
         repository: oauth2-proxy/oauth2-proxy
-        tag: v7.6.0
+        tag: v7.8.1
 
     resources:
       kubevirt_manager: {}

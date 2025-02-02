@@ -91,6 +91,12 @@ rules:
       - get
       - list
   - apiGroups:
+      - networking.k8s.io
+    resources:
+      - networkpolicies
+    verbs:
+      - '*'
+  - apiGroups:
       - ''
     resources:
       - persistentvolumeclaims
@@ -99,19 +105,27 @@ rules:
       - secrets
       - serviceaccounts
       - configmaps
-      - deployments
-    verbs:
-      - '*'
-  - apiGroups:
-      - rbac.authorization.k8s.io
-    resources:
-      - rolebindings
     verbs:
       - '*'
   - apiGroups:
       - apps
     resources:
       - deployments
+    verbs:
+      - '*'
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - role
+      - clusterrole
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - rolebindings
+      - clusterrolebindings
     verbs:
       - '*'
   - apiGroups:
@@ -140,6 +154,7 @@ rules:
     resources:
       - virtualmachines
       - virtualmachineinstances
+      - virtualmachineinstancemigrations
     verbs:
       - '*'
   - apiGroups:
@@ -312,6 +327,7 @@ rules:
       - pods
       - replicationcontrollers
       - services
+      - secrets
     verbs:
       - get
       - list
@@ -323,8 +339,8 @@ rules:
     verbs:
       - get
       - list
-      - update
       - watch
+      - udate
   - apiGroups:
       - ''
     resources:
@@ -389,14 +405,6 @@ rules:
       - create
       - get
       - update
-  - apiGroups:
-      - ''
-    resources:
-      - secrets
-    verbs:
-      - get
-      - list
-      - watch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -417,8 +425,8 @@ rules:
     verbs:
       - get
       - list
-      - update
       - watch
+      - udate
   - apiGroups:
       - infrastructure.cluster.x-k8s.io
     resources:
@@ -428,5 +436,39 @@ rules:
     verbs:
       - get
       - list
-      - update
       - watch
+      - udate
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: kubevirt-manager
+    app.kubernetes.io/managed-by: commodore
+    kubevirt-manager.io/version: 1.4.1
+  name: kubevirt-manager-cas-workload
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubevirt-manager-cas-workload
+subjects:
+  - kind: ServiceAccount
+    name: kubevirt-manager
+    namespace: syn-kubevirt-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: kubevirt-manager
+    app.kubernetes.io/managed-by: commodore
+    kubevirt-manager.io/version: 1.4.1
+  name: kubevirt-manager-cas-management
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubevirt-manager-cas-management
+subjects:
+  - kind: ServiceAccount
+    name: kubevirt-manager
+    namespace: syn-kubevirt-manager
