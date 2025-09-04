@@ -47,7 +47,7 @@ spec:
               value: https://kubevirt.local/oauth2/callback
             - name: OAUTH2_PROXY_UPSTREAMS
               value: http://localhost:8080
-          image: quay.io/oauth2-proxy/oauth2-proxy:v7.8.2
+          image: quay.io/oauth2-proxy/oauth2-proxy:v7.12.0
           imagePullPolicy: IfNotPresent
           name: oauth-proxy
           ports:
@@ -109,6 +109,14 @@ rules:
     resources:
       - nodes
       - namespaces
+      - pods
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - ''
+    resources:
+      - pods/log
     verbs:
       - get
       - list
