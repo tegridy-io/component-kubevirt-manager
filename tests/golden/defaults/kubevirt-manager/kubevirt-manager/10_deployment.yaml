@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: commodore
     app.kubernetes.io/name: kubevirt-manager
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager
   namespace: syn-kubevirt-manager
 spec:
@@ -15,19 +15,19 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: kubevirt-manager
-      kubevirt-manager.io/version: 1.5.2
+      kubevirt-manager.io/version: 1.5.3
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app.kubernetes.io/name: kubevirt-manager
-        kubevirt-manager.io/version: 1.5.2
+        kubevirt-manager.io/version: 1.5.3
     spec:
       containers:
         - args: []
           env: []
-          image: docker.io/kubevirtmanager/kubevirt-manager:1.5.2
+          image: docker.io/kubevirtmanager/kubevirt-manager:1.5.3
           imagePullPolicy: IfNotPresent
           name: kubevirt-manager
           ports:
@@ -63,7 +63,7 @@ metadata:
   labels:
     app: kubevirt-manager
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager
   namespace: syn-kubevirt-manager
 ---
@@ -72,7 +72,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager
 rules:
   - apiGroups:
@@ -250,7 +250,7 @@ metadata:
   labels:
     app: kubevirt-manager
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -266,7 +266,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-kccm
 rules:
   - apiGroups:
@@ -307,7 +307,7 @@ metadata:
   labels:
     app: kubevirt-manager
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-kccm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -323,7 +323,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-cas-workload
 rules:
   - apiGroups:
@@ -419,7 +419,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-cas-management
 rules:
   - apiGroups:
@@ -453,7 +453,7 @@ metadata:
   labels:
     app: kubevirt-manager
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-cas-workload
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -470,7 +470,7 @@ metadata:
   labels:
     app: kubevirt-manager
     app.kubernetes.io/managed-by: commodore
-    kubevirt-manager.io/version: 1.5.2
+    kubevirt-manager.io/version: 1.5.3
   name: kubevirt-manager-cas-management
 roleRef:
   apiGroup: rbac.authorization.k8s.io
