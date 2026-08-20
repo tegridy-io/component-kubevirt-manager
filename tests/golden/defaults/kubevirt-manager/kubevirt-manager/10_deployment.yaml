@@ -243,6 +243,18 @@ rules:
       - images
     verbs:
       - '*'
+  - apiGroups:
+      - snapshot.kubevirt.io
+    resources:
+      - virtualmachinesnapshots
+      - virtualmachinesnapshotcontents
+      - virtualmachinerestores
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - delete
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -348,7 +360,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
   - apiGroups:
       - ''
     resources:
@@ -434,7 +446,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
   - apiGroups:
       - infrastructure.cluster.x-k8s.io
     resources:
@@ -445,7 +457,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
