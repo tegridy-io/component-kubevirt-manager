@@ -47,7 +47,7 @@ spec:
               value: https://kubevirt.local/oauth2/callback
             - name: OAUTH2_PROXY_UPSTREAMS
               value: http://localhost:8080
-          image: quay.io/oauth2-proxy/oauth2-proxy:v7.8.2
+          image: quay.io/oauth2-proxy/oauth2-proxy:v7.15.4
           imagePullPolicy: IfNotPresent
           name: oauth-proxy
           ports:
@@ -272,6 +272,18 @@ rules:
       - images
     verbs:
       - '*'
+  - apiGroups:
+      - snapshot.kubevirt.io
+    resources:
+      - virtualmachinesnapshots
+      - virtualmachinesnapshotcontents
+      - virtualmachinerestores
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - delete
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -377,7 +389,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
   - apiGroups:
       - ''
     resources:
@@ -463,7 +475,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
   - apiGroups:
       - infrastructure.cluster.x-k8s.io
     resources:
@@ -474,7 +486,7 @@ rules:
       - get
       - list
       - watch
-      - udate
+      - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
